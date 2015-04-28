@@ -1,27 +1,17 @@
-var main = function () {
-    "use strict";
+var app = angular.module("chatSystem",[]);
 
-    var addCommentFromInputBox = function () {
-        var $new_comment;
+app.controller("chat",function($scope){
 
-        if ($(".comment-input input").val() !== "") {
-            $new_comment = $("<p>").text($(".comment-input input").val());
-            $new_comment.hide();
-            $(".comments").append($new_comment);
-            $new_comment.fadeIn();
-            $(".comment-input input").val("");
+    $scope.test="vishal";
+    $scope.commentList=["This is the first commnet","Here's the second comment","And this is one More","Here is another one"]; 
+
+    $scope.addComment = function(){
+        if($scope.chatInput== null){
+            window.alert("Comment can't be empty");
+        }else{
+            $scope.commentList.push($scope.chatInput);
         }
-    };
+    }
+});
 
-    $(".comment-input button").on("click", function (event) {
-        addCommentFromInputBox();
-    });
 
-    $(".comment-input input").on("keypress", function (event) {
-        if (event.keyCode === 13) {
-            addCommentFromInputBox();
-        }
-    });
-};
-
-$(document).ready(main);
